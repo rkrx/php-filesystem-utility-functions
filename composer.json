@@ -1,0 +1,13 @@
+{
+	"name": "rkr/fsutils",
+	"license": "MIT",
+	"require": {
+		"php": ">= 5.3"
+	},
+	"autoload": {
+		"files": [
+			"src/fsutils/dir.php",
+			"src/fsutils/file.php"
+		]
+	}
+}
