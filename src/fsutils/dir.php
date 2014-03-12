@@ -93,6 +93,9 @@ function contents($workDir, $filterCallback = null, $globFlags = null) {
  * @return mixed[]
  */
 function directories($workDir, $filterCallback = null, $globFlags = null) {
+	if($globFlags === null) {
+		$globFlags = GLOB_NOCHECK | GLOB_NOSORT;
+	}
 	$globFlags |= GLOB_ONLYDIR;
 	return contents($workDir, $filterCallback, $globFlags);
 }
