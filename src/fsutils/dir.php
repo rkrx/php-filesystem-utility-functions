@@ -79,7 +79,7 @@ function contents($workDir, $filterCallback = null, $globFlags = null) {
 	$path = concat(array($workDir, '*'));
 	$files = glob($path, $globFlags);
 	if(is_callable($filterCallback)) {
-		$files = call_user_func($filterCallback, $files);
+		$files = array_map($filterCallback, $files);
 	}
 	$files = array_filter($files);
 	$files = array_map('basename', $files);
@@ -111,8 +111,12 @@ function files($workDir, $filterCallback = null, $globFlags = null) {
 		if(!is_file($filename)) {
 			return null;
 		}
-		return call_user_func($filterCallback, $filename);
+		if($filterCallback !== null) {
+			return call_user_func($filterCallback, $filename);
+		}
+		return $filename;
 	};
 	$files = contents($workDir, $innerFilterCallback, $globFlags);
 	return $files;
 }
+

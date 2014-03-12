@@ -7,7 +7,9 @@
 	"autoload": {
 		"files": [
 			"src/fsutils/dir.php",
-			"src/fsutils/file.php"
+			"src/fsutils/recursive/dir.php",
+			"src/fsutils/file.php",
+			"src/fsutils/path.php"
 		]
 	}
 }
