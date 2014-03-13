@@ -10,5 +10,9 @@ function unixify($path, $directorySeparator = null) {
 	if(is_null($directorySeparator)) {
 		$directorySeparator = DIRECTORY_SEPARATOR;
 	}
-	return str_replace($directorySeparator, '/', $path);
+	$path = str_replace($directorySeparator, '/', $path);
+	if($directorySeparator !== '\\') {
+		$path = str_replace('\\', '/', $path);
+	}
+	return $path;
 }
