@@ -7,18 +7,6 @@ use fsutils\exceptions\FileException;
 use fsutils\path;
 
 /**
- * Takes path-parts as an argument-list. If an argument is an array, it will be recursivly unwrapped
- *
- * @param string|array ...$path
- * @return bool
- */
-function exists($path) {
-	$args = func_get_args();
-	$path = path\concat($args);
-	return file_exists($path);
-}
-
-/**
  * @param string $path
  * @throws Exception
  * @return DateTime

@@ -1,6 +1,8 @@
 <?php
 namespace fsutils\dir;
 
+use fsutils\path;
+
 /**
  * @param string $workDir
  * @param callable $filterCallback
@@ -11,7 +13,7 @@ function contents($workDir, $filterCallback = null, $globFlags = null) {
 	if($globFlags === null) {
 		$globFlags = GLOB_NOCHECK | GLOB_NOSORT;
 	}
-	$path = concat(array($workDir, '*'));
+	$path = path\concat(array($workDir, '*'));
 	$files = glob($path, $globFlags);
 	if(is_callable($filterCallback)) {
 		$files = array_map($filterCallback, $files);

@@ -2,6 +2,7 @@
 namespace fsutils\dir\recursive;
 
 use fsutils\dir;
+use fsutils\path;
 
 /**
  * @param string $workDir
@@ -12,13 +13,13 @@ use fsutils\dir;
 function contents($workDir, $filterCallback = null, $globFlags = null) {
 	$res = array();
 	$rec = function ($baseDir, $subDir = null) use (&$rec, &$res, $filterCallback, $globFlags) {
-		$workDir = dir\concat($baseDir, $subDir);
+		$workDir = path\concat($baseDir, $subDir);
 		$items = dir\contents($workDir, $filterCallback, $globFlags);
-		$items = array_map(function ($item) use ($subDir) { return dir\concat($subDir, $item); }, $items);
+		$items = array_map(function ($item) use ($subDir) { return path\concat($subDir, $item); }, $items);
 		$res = array_merge($res, $items);
 		$directories = dir\directories($workDir);
 		foreach($directories as $directory) {
-			$subWorkDir = dir\concat($subDir, $directory);
+			$subWorkDir = path\concat($subDir, $directory);
 			$rec($baseDir, $subWorkDir);
 		}
 	};

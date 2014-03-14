@@ -2,6 +2,18 @@
 namespace fsutils\path;
 
 /**
+ * Takes path-parts as an argument-list. If an argument is an array, it will be recursivly unwrapped
+ *
+ * @param string|array ...$path
+ * @return bool
+ */
+function exists($path) {
+	$args = func_get_args();
+	$path = concat($args);
+	return file_exists($path);
+}
+
+/**
  * Credits go to Christian @ http://stackoverflow.com/questions/4049856/replace-phps-realpath
  *
  * @param $path
