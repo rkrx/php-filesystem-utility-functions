@@ -20,7 +20,7 @@ function exists($path) {
  * @return mixed|string
  */
 function normalize($path) {
-	$unipath = strlen($path) == 0 || $path{0} != '/';
+	$unipath = strlen($path) == 0 || $path[0] != '/';
 	if(strpos($path, ':') === false && $unipath) {
 		$path = getcwd().DIRECTORY_SEPARATOR.$path;
 	}
